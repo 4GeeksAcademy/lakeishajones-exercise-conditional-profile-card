@@ -33,14 +33,15 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
+          <h1>${variables.name || "Your Name"} ${variables.lastName || ""}</h1>
+          <h2>${variables.role || "Your Role"}</h2>
+          <h3>${variables.city || "City"}, ${variables.country ||
+    "Country"}</h3>
           <ul class="position-right">
             <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/LakeishaJon"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/lakeisha-jones-209a1b98"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/mz._keisha_j/"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -75,7 +76,7 @@ window.onload = function() {
   document.querySelectorAll(".picker").forEach(function(elm) {
     elm.addEventListener("change", function(e) {
       // <- add a listener to every input
-      const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
+      const attribute = e.target.name; // when any input changes, collect the value
       let values = {};
       values[attribute] =
         this.value == "" || this.value == "null"
