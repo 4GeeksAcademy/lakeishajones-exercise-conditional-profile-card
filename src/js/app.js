@@ -29,19 +29,24 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  const fName = variables.name || "Lucy";
+  const lName = variables.lastName || "Boilett";
+  const role = variables.role || "web Developer";
+  const country = variables.country || "USA";
+  const city = variables.city || "Miami";
+  const socialMediaPosition = variables.socialMediaPosition;
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name || "Your Name"} ${variables.lastName || ""}</h1>
-          <h2>${variables.role || "Your Role"}</h2>
-          <h3>${variables.city || "City"}, ${variables.country ||
-    "Country"}</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/LakeishaJon"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/lakeisha-jones-209a1b98"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://www.instagram.com/mz._keisha_j/"><i class="fab fa-instagram"></i></a></li>
+          <h1> ${fName} ${lName}</h1>
+          <h2>${role}</h2>
+          <h3>${city},${country}</h3>
+          <ul class="${socialMediaPosition}">
+            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -76,7 +81,7 @@ window.onload = function() {
   document.querySelectorAll(".picker").forEach(function(elm) {
     elm.addEventListener("change", function(e) {
       // <- add a listener to every input
-      const attribute = e.target.name; // when any input changes, collect the value
+      const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
       let values = {};
       values[attribute] =
         this.value == "" || this.value == "null"
